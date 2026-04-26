@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
-import * as fs from 'fs';
 import { execFile } from 'child_process';
 
 let outputChannel: vscode.OutputChannel | undefined;
@@ -70,23 +69,7 @@ export async function extractXmi(
     );
     if (confirm !== 'Yes') { return; }
 
-    const stem = path.basename(filePath, path.extname(filePath));
-    const defaultFolder = path.join(path.dirname(filePath), stem);
-
-    let outputDir: string;
-    if (!fs.existsSync(defaultFolder)) {
-        outputDir = defaultFolder;
-    } else {
-        const picked = await vscode.window.showOpenDialog({
-            canSelectFiles: false,
-            canSelectFolders: true,
-            canSelectMany: false,
-            openLabel: 'Extract Here',
-            title: `Folder "${stem}" already exists — pick an output folder`,
-        });
-        if (!picked || picked.length === 0) { return; }
-        outputDir = picked[0].fsPath;
-    }
+    const outputDir = path.dirname(filePath);
 
     try {
         await runPython(pythonScript, [filePath, '--outputdir', outputDir, '-q']);
