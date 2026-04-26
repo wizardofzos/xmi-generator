@@ -5,13 +5,13 @@ import { execFile } from 'child_process';
 const STATE_KEYS = {
     dsn: 'xmi-generator.dsn',
     fromUser: 'xmi-generator.fromUser',
-    fromSystem: 'xmi-generator.fromSystem',
+    fromNode: 'xmi-generator.fromNode',
 };
 
 const DEFAULTS = {
     dsn: '',
     fromUser: 'XMIGEN',
-    fromSystem: 'VSCODE',
+    fromNode: 'VSCODE',
 };
 
 export async function generateXmi(
@@ -33,15 +33,15 @@ export async function generateXmi(
     });
     if (fromUser === undefined) { return; }
 
-    const fromSystem = await vscode.window.showInputBox({
-        prompt: 'System name (from-system)',
-        value: context.globalState.get<string>(STATE_KEYS.fromSystem, DEFAULTS.fromSystem),
+    const fromNode = await vscode.window.showInputBox({
+        prompt: 'Node name (from-node)',
+        value: context.globalState.get<string>(STATE_KEYS.fromNode, DEFAULTS.fromNode),
     });
-    if (fromSystem === undefined) { return; }
+    if (fromNode === undefined) { return; }
 
     await context.globalState.update(STATE_KEYS.dsn, dsn);
     await context.globalState.update(STATE_KEYS.fromUser, fromUser);
-    await context.globalState.update(STATE_KEYS.fromSystem, fromSystem);
+    await context.globalState.update(STATE_KEYS.fromNode, fromNode);
 
     const baseName = path.basename(sourcePath, path.extname(sourcePath));
     const outputPath = path.join(path.dirname(sourcePath), baseName + '.XMI');
@@ -53,7 +53,7 @@ export async function generateXmi(
         '-o', outputPath,
         '--dsn', dsn,
         '--from-user', fromUser,
-        '--from-system', fromSystem,
+        '--from-node', fromNode,
     ], (_error, _stdout, stderr) => {
         if (_error) {
             if ((_error as NodeJS.ErrnoException).code === 'ENOENT') {
