@@ -28,7 +28,7 @@
     }
   },
   "scripts": {
-    "install-python": "python3 -m pip install xmi-reader==1.0.1 --target ./python/lib",
+    "install-python": "python3 -m pip install xmi-reader==1.0.1 --target ./python/lib --upgrade -q",
     "vscode:prepublish": "pnpm run install-python && pnpm run package",
     "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
     "watch": "npm-run-all -p watch:*",
