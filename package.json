@@ -17,7 +17,15 @@
         "command": "xmi-generator.generate",
         "title": "Generate XMI"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "xmi-generator.generate",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "install-python": "python3 -m pip install xmi-reader==1.0.1 --target ./python/lib",
