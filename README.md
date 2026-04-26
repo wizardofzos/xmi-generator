@@ -1,8 +1,13 @@
 # XMI Generator
 
-Generate TSO XMIT (`.XMI`) mainframe files from any file or folder — right from the VS Code Explorer.
+Generate and extract TSO XMIT (`.XMI`) mainframe files right from the VS Code Explorer.
 
-## Features
+## Requirements
+
+- **Python 3** must be available as `python3` on your PATH.
+- The `xmi-reader` Python package and its dependencies are **bundled inside the extension** — no `pip install` needed.
+
+## Generate XMI
 
 Right-click any file or folder in the Explorer and select **Generate XMI**. You'll be prompted for three values, all remembered for next time:
 
@@ -14,62 +19,26 @@ Right-click any file or folder in the Explorer and select **Generate XMI**. You'
 
 The `.XMI` file is created alongside the source — `myfile.jcl` → `myfile.XMI`, `myfolder/` → `myfolder.XMI`.
 
-## Requirements
+## Extract XMI
 
-- **Python 3** must be available as `python3` on your PATH.
-- The `xmi-reader` Python package and its dependencies are **bundled inside the extension** — no `pip install` needed by end users.
+Right-click any `.XMI`, `.AWS`, or `.HET` file and select **Extract XMI**.
 
-## Development
+The Output Channel shows:
+- The embedded message (if any)
+- The full contents listing
 
-### Setup
-
-```bash
-pnpm install
-pnpm run install-python   # bundles xmi-reader into python/lib/
-```
-
-### Run / Debug
-
-Press `F5` to launch the Extension Development Host with the extension loaded.
-
-### Build
-
-```bash
-make compile      # type-check, lint, and build dist/
-make package      # create xmi-generator-x.x.x.vsix
-make install      # install the .vsix into VS Code
-```
-
-Or directly with pnpm:
-
-```bash
-pnpm run compile
-pnpm exec vsce package
-```
-
-## Publishing to the Marketplace
-
-### One-time setup
-
-1. Create a publisher at [marketplace.visualstudio.com/manage](https://marketplace.visualstudio.com/manage)
-2. Add your publisher ID to `package.json`:
-   ```json
-   "publisher": "your-publisher-id"
-   ```
-3. Create a Personal Access Token at [dev.azure.com](https://dev.azure.com) with **Marketplace → Manage** scope
-4. Log in:
-   ```bash
-   make login PUBLISHER=your-publisher-id
-   ```
-
-### Publish
-
-```bash
-make publish
-```
+Confirm to extract. The contents are extracted into the same folder as the source file, using the PDS dataset name as the folder name (e.g. `TEST.XMI` → `TEST.PDS/`).
 
 ## Release Notes
 
+### 0.0.3
+
+Fixed extraction folder — contents now land in the PDS dataset name folder directly alongside the source file.
+
+### 0.0.2
+
+Added **Extract XMI** — right-click `.XMI`, `.AWS`, `.HET` files to preview and extract contents.
+
 ### 0.0.1
 
-Initial release — Generate XMI from file or folder via Explorer context menu.
+Initial release — **Generate XMI** from file or folder via Explorer context menu.
