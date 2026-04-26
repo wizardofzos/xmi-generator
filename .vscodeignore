@@ -12,6 +12,10 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+docs/**
+pnpm-lock.yaml
+Makefile
+.npmrc
 python/lib/**/__pycache__/**
 python/lib/**/*.pyc
 python/lib/**/*.pyi
