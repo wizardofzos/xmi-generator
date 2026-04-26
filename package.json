@@ -2,7 +2,7 @@
   "name": "xmi-generator",
   "displayName": "xmi-generator",
   "description": "Create XMI files straight outta VSCode",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.116.0"
   },
@@ -21,12 +21,21 @@
       {
         "command": "xmi-generator.generate",
         "title": "Generate XMI"
+      },
+      {
+        "command": "xmi-generator.extract",
+        "title": "Extract XMI"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "xmi-generator.generate",
+          "group": "navigation"
+        },
+        {
+          "command": "xmi-generator.extract",
+          "when": "resourceExtname =~ /\\.(xmi|aws|het)/i",
           "group": "navigation"
         }
       ]
