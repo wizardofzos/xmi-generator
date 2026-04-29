@@ -31,6 +31,10 @@ Confirm to extract. The contents are extracted into the same folder as the sourc
 
 ## Release Notes
 
+### 0.0.4
+
+Fixed `libmagic` error on machines without it installed — bundled `python-magic-bin` where available and added a clear per-platform install hint for all other systems.
+
 ### 0.0.3
 
 Fixed extraction folder — contents now land in the PDS dataset name folder directly alongside the source file.
