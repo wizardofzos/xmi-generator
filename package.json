@@ -42,7 +42,7 @@
     }
   },
   "scripts": {
-    "install-python": "python3 -m pip install xmi-reader==1.0.1 --target ./python/lib --upgrade -q && (python3 -m pip install python-magic-bin==0.4.14 --target ./python/lib --upgrade -q || true)",
+    "install-python": "python3 -m pip install xmi-reader==1.0.1 --target ./python/lib --upgrade -q && node -e \"const {execSync}=require('child_process');try{execSync('python3 -m pip install python-magic-bin==0.4.14 --target ./python/lib --upgrade -q',{stdio:'inherit'})}catch(e){}\"",
     "vscode:prepublish": "pnpm run install-python && pnpm run package",
     "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
     "watch": "npm-run-all -p watch:*",
