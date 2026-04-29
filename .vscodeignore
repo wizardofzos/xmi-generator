@@ -21,3 +21,4 @@ python/lib/**/__pycache__/**
 python/lib/**/*.pyc
 python/lib/**/*.pyi
 python/lib/**/*.dist-info/RECORD
+tests/**
