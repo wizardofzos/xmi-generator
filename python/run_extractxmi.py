@@ -1,6 +1,21 @@
 import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lib'))
-from xmi.cli import extract_main
+
+try:
+    from xmi.cli import extract_main
+except ImportError as e:
+    if 'magic' in str(e).lower() or 'libmagic' in str(e).lower():
+        sys.stderr.write(
+            "Error: libmagic not found.\n"
+            "Install it with:\n"
+            "  macOS:   brew install libmagic\n"
+            "  Ubuntu:  sudo apt install libmagic1\n"
+            "  Fedora:  sudo dnf install file-libs\n"
+            "  Windows: pip install python-magic-bin\n"
+        )
+        sys.exit(1)
+    raise
+
 if __name__ == '__main__':
     extract_main()
