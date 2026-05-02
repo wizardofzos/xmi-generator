@@ -31,6 +31,10 @@ Confirm to extract. The contents are extracted into the same folder as the sourc
 
 ## Release Notes
 
+### 0.0.8
+
+Fixed Python 3.14 crash on startup — properly patched `prettytable` type alias incompatibility.
+
 ### 0.0.7
 
 Fixed compatibility with Python 3.14 — patched bundled `prettytable` to use lazy annotation evaluation.
