@@ -17,5 +17,21 @@ except ImportError as e:
         sys.exit(1)
     raise
 
+_MAGIC_HINT = (
+    "Error: libmagic not found.\n"
+    "Install it with:\n"
+    "  macOS:   brew install libmagic\n"
+    "  Ubuntu:  sudo apt install libmagic1\n"
+    "  Fedora:  sudo dnf install file-libs\n"
+    "  Windows: pip install python-magic-bin\n"
+)
+
 if __name__ == '__main__':
-    create_main()
+    try:
+        create_main()
+    except Exception as e:
+        msg = str(e).lower()
+        if any(s in msg for s in ('magic', 'libmagic', 'magic files')):
+            sys.stderr.write(_MAGIC_HINT)
+            sys.exit(1)
+        raise

@@ -35,7 +35,7 @@ export async function extractXmi(
 
     try {
         const { stdout: message } = await runPython(pythonScript, ['--message', filePath]);
-        if (message.trim()) {
+        if (message.trim() && message.trim() !== 'None') {
             channel.appendLine('=== Message ===');
             channel.appendLine(message.trim());
             channel.appendLine('===============');
