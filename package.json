@@ -2,7 +2,7 @@
   "name": "xmi-generator",
   "displayName": "xmi-generator",
   "description": "Create XMI files straight outta VSCode",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "engines": {
     "vscode": "^1.116.0"
   },
@@ -42,7 +42,7 @@
     }
   },
   "scripts": {
-    "install-python": "python3 -m pip install xmi-reader==1.0.2 --target ./python/lib --upgrade -q && node -e \"const {execSync}=require('child_process');try{execSync('python3 -m pip install python-magic-bin==0.4.14 --target ./python/lib --upgrade -q',{stdio:'pipe'})}catch(e){}\" && node -e \"const fs=require('fs'),p='./python/lib/prettytable/prettytable.py',c=fs.readFileSync(p,'utf8');fs.writeFileSync(p,c.replace('Literal[\\\"cap\\\", \\\"title\\\", \\\"upper\\\", \\\"lower\\\"] | None','Literal[\\\"cap\\\", \\\"title\\\", \\\"upper\\\", \\\"lower\\\", None]'));\"",
+    "install-python": "python3 -m pip install xmi-reader==1.0.3 --target ./python/lib --upgrade -q && node -e \"const {execSync}=require('child_process');try{execSync('python3 -m pip install python-magic-bin==0.4.14 --target ./python/lib --upgrade -q',{stdio:'pipe'})}catch(e){}\" && node -e \"const fs=require('fs'),p='./python/lib/prettytable/prettytable.py',c=fs.readFileSync(p,'utf8');fs.writeFileSync(p,c.replace('Literal[\\\"cap\\\", \\\"title\\\", \\\"upper\\\", \\\"lower\\\"] | None','Literal[\\\"cap\\\", \\\"title\\\", \\\"upper\\\", \\\"lower\\\", None]'));\"",
     "vscode:prepublish": "npm run install-python && npm run package",
     "compile": "npm run check-types && npm run lint && node esbuild.js",
     "watch": "npm-run-all -p watch:*",

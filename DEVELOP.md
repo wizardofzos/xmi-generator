@@ -3,8 +3,8 @@
 ## Setup
 
 ```bash
-pnpm install
-pnpm run install-python   # bundles xmi-reader into python/lib/
+npm install               # or: pnpm install
+npm run install-python    # bundles xmi-reader into python/lib/
 ```
 
 ## Run / Debug
@@ -19,11 +19,11 @@ make package      # create xmi-generator-x.x.x.vsix
 make install      # install the .vsix into VS Code locally
 ```
 
-Or directly with pnpm:
+Or directly with npm:
 
 ```bash
-pnpm run compile
-pnpm exec vsce package
+npm run compile
+npm exec vsce package
 ```
 
 ## Publishing (VSIX)

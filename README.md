@@ -31,6 +31,10 @@ Confirm to extract. The contents are extracted into the same folder as the sourc
 
 ## Release Notes
 
+### 0.0.9
+
+Updated to xmi-reader 1.0.3 for fixing some PDS edge case errors.
+
 ### 0.0.8
 
 Fixed Python 3.14 crash on startup — properly patched `prettytable` type alias incompatibility.
