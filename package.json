@@ -2,7 +2,7 @@
   "name": "xmi-generator",
   "displayName": "xmi-generator",
   "description": "Create XMI files straight outta VSCode",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "engines": {
     "vscode": "^1.116.0"
   },
@@ -42,13 +42,13 @@
     }
   },
   "scripts": {
-    "install-python": "python3 -m pip install xmi-reader==1.0.2 --target ./python/lib --upgrade -q && node -e \"const {execSync}=require('child_process');try{execSync('python3 -m pip install python-magic-bin==0.4.14 --target ./python/lib --upgrade -q',{stdio:'inherit'})}catch(e){}\"",
-    "vscode:prepublish": "pnpm run install-python && pnpm run package",
-    "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+    "install-python": "python3 -m pip install xmi-reader==1.0.2 --target ./python/lib --upgrade -q && node -e \"const {execSync}=require('child_process');try{execSync('python3 -m pip install python-magic-bin==0.4.14 --target ./python/lib --upgrade -q',{stdio:'pipe'})}catch(e){}\" && node -e \"const fs=require('fs'),p='./python/lib/prettytable/prettytable.py',c=fs.readFileSync(p,'utf8');if(!c.startsWith('from __future__'))fs.writeFileSync(p,'from __future__ import annotations\\n'+c);\"",
+    "vscode:prepublish": "npm run install-python && npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
     "watch": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",

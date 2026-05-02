@@ -31,6 +31,10 @@ Confirm to extract. The contents are extracted into the same folder as the sourc
 
 ## Release Notes
 
+### 0.0.7
+
+Fixed compatibility with Python 3.14 — patched bundled `prettytable` to use lazy annotation evaluation.
+
 ### 0.0.6
 
 Fixed extraction failing silently on machines without `libmagic` — now shows a clear install hint for macOS, Ubuntu, Fedora, and Windows.
