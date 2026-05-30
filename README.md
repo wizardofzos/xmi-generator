@@ -2,6 +2,8 @@
 
 Generate and extract TSO XMIT (`.XMI`) mainframe files right from the VS Code Explorer.
 
+![demo](videos/xmi-vscode.gif)
+
 ## Requirements
 
 - **Python 3** must be available as `python3` on your PATH.
